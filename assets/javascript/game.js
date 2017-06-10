@@ -32,8 +32,8 @@ $(document).ready(function() {
 	};
 
 	var characters = [luke, obiWan, darthMaul, darthSidious];
-	var clickSelects = 0; //keeps track of status of game (character select, opponent select, etc)
-	var opponentSelect = false;
+	var clickSelects = 0; //to check for win condition
+	var opponentSelect = false; //keeps track of status of game (character select, opponent select, etc)
 
 	function placeCharacters() {
 		for (i = 0; i < characters.length; i++) {
@@ -58,12 +58,10 @@ $(document).ready(function() {
 		if (clickSelects === 0 && !opponentSelect) {
 			// "this" is the element the user clicked on
 			transferDiv($(this), $("#player-character"));
+			$(this).removeClass("character").attr("id", "player");
 			$("#characters-initial").children(".character").each(function () {
 	 			// "this" is the current element in the loop
     			transferDiv($(this), $("#opponents"));
-    			$(this).removeClass("character").addClass("enemy");
-    			console.log($(this).attr('class'));
-
 			});
 
 			opponentSelect = true;
@@ -71,20 +69,15 @@ $(document).ready(function() {
 			clickSelects++;
 			console.log(opponentSelect);
 			console.log(clickSelects);
-		}
-		});
 
-	$(".enemy").click(function(event) {
-		if (clickSelects > 0 && clickSelects < characters.length && opponentSelect) {
-			console.log(opponentSelect);
+		} else if (clickSelects > 0 && clickSelects < characters.length && opponentSelect) {
 			transferDiv($(this), $("#defender"));
+			$(this).removeClass("character").attr("id", "defender");
 			opponentSelect = false;
 			clickSelects++;
 			console.log(opponentSelect);
 			console.log(clickSelects);
-		} else {
-			console.log("lol u r stupid");
 		}
-		});
+	});
 
 })
