@@ -1,46 +1,39 @@
 $(document).ready(function() {
-	var luke = {
-		name: "Luke Skywalker",
-		id: "luke-skywalker",
-		HP: 100,
-		AP: 8,
-		counterAP: 5
-	};
+	//to do: attach character html representations to actual character objects i am dumb pls help 
+	var luke = new character("Luke Skywalker", "luke-skywalker", 100, 8, 5);
 
-	var obiWan= {
-		name: "Obi-Wan Kenobi",
-		id: "obi-wan",
-		HP: 120,
-		AP: 8,
-		counterAP: 15
-	};
+	var obiWan = new character("Obi-Wan Kenobi", "obi-wan", 120, 8, 15);
 
-	var darthMaul= {
-		name: "Darth Maul",
-		id: "darth-maul",
-		HP: 200,
-		AP: 8,
-		counterAP: 25
-	};
+	var darthMaul = new character("Darth Maul", "darth-maul", 200, 8, 25);
 
-	var darthSidious= {
-		name: "Darth Sidious",
-		id: "darth-sidious",
-		HP: 150,
-		AP: 8,
-		counterAP: 20
-	};
+	var darthSidious = new character("Darth Sidious", "darth-sidious", 150, 8, 20);
 
 	var characters = [luke, obiWan, darthMaul, darthSidious];
-	var clickSelects = 0; //to check for win condition
+	var selections = 0; //to check for win condition
 	var opponentSelect = false; //keeps track of status of game (character select, opponent select, etc)
+	var defender;
+	var player;
+	var playerAP = 8;
+
+	function character(name, id, hp, ap, counterAP) {
+		this.name = name;
+		this.id = id;
+		this.HP = hp;
+		this.AP = ap;
+		this.counterAP = counterAP;
+
+	}
 
 	function placeCharacters() {
 		for (i = 0; i < characters.length; i++) {
 			var charDiv = $("<div>");
-			charDiv.addClass("character")
-			charDiv.attr('id', characters[i].id);
+			charDiv.addClass("character-init")
+			charDiv.attr("id", characters[i].id);
 			charDiv.html(characters[i].name);
+			charDiv.data("data-attr", {hp: characters[i].hp, ap: characters[i].ap, counterAP: characters[i].counterAP});
+			// charDiv.attr("data-ap", characters[i].ap);
+			// charDiv.attr("data-counterAP", characters[i].counterAP);
+			console.log(charDiv);
 			$("#characters-initial").append(charDiv);
 		}
 	}
@@ -54,30 +47,49 @@ $(document).ready(function() {
 
 
 	
-	$(".character").click(function(event) { 
-		if (clickSelects === 0 && !opponentSelect) {
-			// "this" is the element the user clicked on
+	$("#characters-initial").on("click", ".character-init", function(event) { 
+		if (selections === 0 && !opponentSelect) {
+			// "this" is the element the user clicked on??
 			transferDiv($(this), $("#player-character"));
-			$(this).removeClass("character").attr("id", "player");
-			$("#characters-initial").children(".character").each(function () {
+			$(this).removeClass("character-init").attr("id", "player");
+			$("#characters-initial").children(".character-init").each(function () {
 	 			// "this" is the current element in the loop
     			transferDiv($(this), $("#opponents"));
+    			$(this).removeClass("character-init").addClass("opponent")
+    			console.log($(this).attr("class"));
 			});
 
 			opponentSelect = true;
-
-			clickSelects++;
+			selections++;
+			player = $(this);
 			console.log(opponentSelect);
-			console.log(clickSelects);
+			console.log(selections);
 
-		} else if (clickSelects > 0 && clickSelects < characters.length && opponentSelect) {
-			transferDiv($(this), $("#defender"));
-			$(this).removeClass("character").attr("id", "defender");
-			opponentSelect = false;
-			clickSelects++;
-			console.log(opponentSelect);
-			console.log(clickSelects);
-		}
+		} 
 	});
+
+	$("#opponents").on("click", ".opponent", function(event) {
+		if (opponentSelect) {
+			transferDiv($(this), $("#defender-div"));
+			$(this).removeClass("opponent").attr("id", "defender");
+			opponentSelect = false;
+			selections++;
+			console.log(opponentSelect);
+			console.log(selections);
+			$("#attack").prop('disabled', false);
+			defender = $(this); 
+			console.log(this);
+		}
+
+	});
+	
+
+
+	$("#attack").click(function (event) {
+		$("#game-text").html("You attacked " + defender.text() + " for " + player.attr("data-ap")) ;
+
+	});
+
+
 
 })
