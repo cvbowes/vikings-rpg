@@ -3,20 +3,7 @@ $(document).ready(function() {
 	var attacks = 0;	//to determine player AP
 	var baseAP = 8;
 	var opponentSelect = false; //keeps track of status of game (character select, opponent select, etc)
-	var defender;
-	var player;
-
-	//to do: attach character html representations to actual character objects i am dumb pls help 
-	var luke = new character("Luke Skywalker", "", 100, baseAP, 5);
-
-	var obiWan = new character("Obi-Wan Kenobi", "", 120, baseAP, 15);
-
-	var darthMaul = new character("Darth Maul", "", 200, baseAP, 25);
-
-	var darthSidious = new character("Darth Sidious", "", 150, baseAP, 20);
-
-	var characters = [luke, obiWan, darthMaul, darthSidious];
-	
+	var defender, player, characters, luke, obiWan, darthMaul, darthSidious;	
 
 	function character(name, img, hp, ap, counterAP) {
 		this.name = name;
@@ -24,15 +11,23 @@ $(document).ready(function() {
 		this.HP = hp;
 		this.AP = ap;
 		this.counterAP = counterAP;
+	}
+
+	function gameSetup() {
+		luke = new character("Luke Skywalker", "", 100, baseAP, 5);
+		obiWan = new character("Obi-Wan Kenobi", "", 120, baseAP, 15);
+		darthMaul = new character("Darth Maul", "", 200, baseAP, 25);
+		darthSidious = new character("Darth Sidious", "", 150, baseAP, 20);
+		characters = [luke, obiWan, darthMaul, darthSidious];
+
+		placeCharacters();
 
 	}
 
 	function placeCharacters() {
-		var charIndices = Object.keys(characters)
-		for (i = 0; i < charIndices.length; i++) {
-			var charIndex = charIndices[i];
-			var character = characters[charIndex];		//allows us to reference characters array dynamically
-			var charDiv = $("<div class = 'character-init' data-name = '" + charIndex + "'>");
+		for (i = 0; i < characters.length; i++) {
+			var character = characters[i];		//allows us to reference characters array dynamically
+			var charDiv = $("<div class = 'character-init' data-name = '" + i + "'>");
 			var charName = $("<div class = 'char-name'>");
 			var charImg = $("<img class = 'char-img'>");
 			var charHP = $("<div class = 'char-hp'>");
@@ -63,15 +58,34 @@ $(document).ready(function() {
 
 	function checkForWin() {
 		if (defender.HP <= 0) {
-			
+			$('#attack').prop('disabled', true);
+			if (selections === characters.length) {
+				$("#game-text").empty();
+				$("#game-text").html("<h3>You win!! Click 'Restart' to battle again.</h3>");
+				$("#restart").show();
+				return true;
+
+			}	else {
+				$("#game-text").empty();
+				$("#game-text").html("<h3>You have defeated " + defender.name + "! Select your next opponent.</h3>")
+				opponentSelect = true;
+				return true;
+			}
+
 		}
+		return false;
 	}
 
 	function checkForLose() {
-		return player.HP <= 0;
+		if (player.HP <= 0) {
+			$('#attack').prop('disabled', true);
+			$("#game-text").empty();
+			$("#game-text").html("<h3>You have been defeated. ): <br/> Click 'Restart' to try again.</h3>")
+			$("#restart").show();
+		}
 	}
 
-	placeCharacters();
+	gameSetup();
 
 
 	
@@ -80,13 +94,15 @@ $(document).ready(function() {
 			// "this" is the element the user clicked on
 			var playerKey = $(this).attr("data-name");
 			player = characters[playerKey];
-			console.log("You have selected " + player.name);
 			$(this).appendTo($("#player-character"));
 			$(this).removeClass("character-init").attr("id", "player");
 			$("#characters-initial").children(".character-init").each(function () {
 	 			// "this" is the current element in the loop
 	 			$(this).appendTo($("#opponents"));
     			$(this).removeClass("character-init").addClass("opponent")
+    		$("#characters-initial").hide();	
+
+    		console.log("You have selected " + player.name);
 			});
 
 			opponentSelect = true;
@@ -96,34 +112,49 @@ $(document).ready(function() {
 
 	$("#opponents").on("click", ".opponent", function(event) {
 		if (opponentSelect) {
+			$("#defender").remove();
+			$("#game-text").empty();
 			var defenderKey = $(this).attr("data-name");
 			defender = characters[defenderKey];
-			console.log("Your opponent is " + defender.name);
 			$(this).appendTo($("#defender-div"));
 			$(this).removeClass("opponent").attr("id", "defender");
 
+			console.log("Your opponent is " + defender.name);
 
 			opponentSelect = false;
 			selections++;
 			$('#attack').prop('disabled', false);
-			console.log(opponentSelect);
-			console.log(selections);
 
 		}
 
 	});
-	
 
-
-	$("#attack").click(function (event) {
-		console.log(player);
-		console.log(defender);
+	$("#attack").on("click", function(event) {
 		playerAttack();
-		defenderAttack();
-
+		if (!checkForWin()) {
+			defenderAttack();
+		}
 
 	});
 
+	$("#restart").on("click", function(event) {
+		$(this).hide();
+		$("#player").remove();
+		$("#defender").remove();
+		$("#opponents .opponent").empty();
+		$("#game-text").empty();
+		$("#characters-initial").show();
+
+		selections = 0;
+		attacks = 0;
+		opponentSelect = false;
+
+		gameSetup();
+
+
+
+
+	});
 
 
 })
