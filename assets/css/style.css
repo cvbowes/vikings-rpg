@@ -1,14 +1,92 @@
-#characters-initial {
-	display: block;
+/*div {
+	border: 1px solid black;
 }
+*/
+
+/*TODO: fix player/defender text so that it stays below image*/
+
+h3 {
+	text-align: center;
+}
+
 .character-init {
+	margin: 0 auto;
 	display: inline-block;
+	margin: 20px;
+	text-align: center;
 }
 
 .char-img {
 	width: 150px;
+	text-align: center;
+
+}
+
+.char-name {
+	margin: auto;
+}
+
+#player-character .char-img {
+	width: 200px;
+	float: right;
+}
+
+#defender-div .char-img {
+	width:200px;
+	float: left;
+}
+
+#characters-initial, #opponents,  #game-text, #attack, #player-character, #defender-div {
+	display: block;
+	text-align: center;
+	margin: 0 auto;
 }
 
 .opponent {
+	text-align: center;
 	display: inline-block;
+	margin: 10px;
+}
+
+#game-text {
+	display
+	height: 100%;
+	padding: 10% 0;
+}
+
+#attack {
+	margin-bottom: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+	h1 {
+		text-align: center;
+	}
+
+	.char-img {
+		width: 100px;
+	}
+
+	#player-character, #defender-div {
+		float: none;
+		margin: auto;
+	}
+
+	
+	#player-character .char-img {
+	width: 150px;
+	float: none;
+	}
+
+	#defender-div .char-img {
+	width: 150px;
+	float: none;
+	}
+
+	#game-text {
+		padding: 0;
+	}
+
+
 }
