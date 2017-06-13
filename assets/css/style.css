@@ -1,0 +1,14 @@
+#characters-initial {
+	display: block;
+}
+.character-init {
+	display: inline-block;
+}
+
+.char-img {
+	width: 150px;
+}
+
+.opponent {
+	display: inline-block;
+}

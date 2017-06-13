@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Star Wars RPG</title>
+	<title>Vikings RPG</title>
 
 	<link rel="stylesheet" href="assets/css/reset.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -16,18 +16,48 @@
 </head>
 
 <body>
-	<h1>Star Wars RPG</h1>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-12 head">
+				<h1>Battle With Vikings!</h1>
+			</div>
+			<div class="col-lg-8 col-md-4 col-sm-12">
 
-	<div id="characters-initial">Choose Your Character</div><br/>
-	<div id="player-character">Your Character </div><br/>
-	<div id="opponents">Enemies Available to Attack</div>
-	<div id="fight-section">
-		Fight Section
-		<button class="btn btn-default" id="attack" disabled>Attack</button>
+			<div id="characters-initial"><h2>Choose Your Character</h2></div><br/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-2"></div>
+			<div class="col-lg-3 col-md-3 col-sm-3">
+				<div id="player-character">Your Character </div><br/>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2">
+				<div id="fight-section">
+					<div id="game-text"></div>
+					<button class="btn btn-default" id="attack" disabled>Attack</button>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3">
+				<div id="defender-div">Defender</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2"></div>
+		</div>
+
+		<div class="row" >
+
+			<br>
+			<button class="btn btn-default" id="restart" style="display: none">Restart</button>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="opponents"><h3>Enemies Available to Attack</h3></div>
+			</div>
+		</div>
+		
+		
 	</div>
-	<div id="defender-div">Defender</div>
-	<div id="game-text"></div>
-	<button class="btn btn-default" id="restart" style="display: none">Restart</button>
 
 </body>
 </html>

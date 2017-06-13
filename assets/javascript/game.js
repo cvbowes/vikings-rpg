@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var attacks = 0;	//to determine player AP
 	var baseAP = 8;
 	var opponentSelect = false; //keeps track of status of game (character select, opponent select, etc)
-	var defender, player, characters, luke, obiWan, darthMaul, darthSidious;	
+	var defender, player, characters, ragnar, lagertha, athelstan, floki, rollo, bjorn, jarlBorg, ecbert;	
 
 	function character(name, img, hp, ap, counterAP) {
 		this.name = name;
@@ -14,11 +14,16 @@ $(document).ready(function() {
 	}
 
 	function gameSetup() {
-		luke = new character("Luke Skywalker", "", 100, baseAP, 5);
-		obiWan = new character("Obi-Wan Kenobi", "", 120, baseAP, 15);
-		darthMaul = new character("Darth Maul", "", 200, baseAP, 25);
-		darthSidious = new character("Darth Sidious", "", 150, baseAP, 20);
-		characters = [luke, obiWan, darthMaul, darthSidious];
+		ragnar = new character("Ragnar", "assets/images/ragnar.jpg", 180, baseAP, 20);
+		lagertha = new character("Lagertha", "assets/images/lagertha.jpg", 150, baseAP, 15);
+		athelstan = new character("Athelstan", "assets/images/athelstan.jpg", 120, baseAP, 5);
+		floki = new character("Floki", "assets/images/floki.jpg", 150, baseAP, 20);
+		rollo = new character("Rollo", "assets/images/rollo.jpg", 200, baseAP, 25);
+		bjorn = new character("Bjorn", "assets/images/bjorn.jpg", 130, baseAP, 10);
+		jarlBorg = new character("Jarl Borg", "assets/images/jarlborg.jpg", 180, baseAP, 18);
+		ecbert = new character("King Ecbert", "assets/images/ecbert.jpg", 150, baseAP, 10);
+
+		characters = [ragnar, lagertha, athelstan, floki, rollo, bjorn, jarlBorg, ecbert];
 
 		placeCharacters();
 
@@ -28,14 +33,14 @@ $(document).ready(function() {
 		for (i = 0; i < characters.length; i++) {
 			var character = characters[i];		//allows us to reference characters array dynamically
 			var charDiv = $("<div class = 'character-init' data-name = '" + i + "'>");
+			var charImg = $("<div class = 'img-div'>");
 			var charName = $("<div class = 'char-name'>");
-			var charImg = $("<img class = 'char-img'>");
 			var charHP = $("<div class = 'char-hp'>");
 
+			charImg.html("<img class='char-img' src=" + character.img + ">");
 			charName.text(character.name);
-			charImg.attr("src", character.img);
 			charHP.text(character.HP);
-			charDiv.append(charName).append(charImg).append(charHP);
+			charDiv.append(charImg).append(charName).append(charHP);
 			$("#characters-initial").append(charDiv);
 		}
 	}
@@ -92,8 +97,8 @@ $(document).ready(function() {
 	$("#characters-initial").on("click", ".character-init", function(event) { 
 		if (selections === 0 && !opponentSelect) {
 			// "this" is the element the user clicked on
-			var playerKey = $(this).attr("data-name");
-			player = characters[playerKey];
+			var playerIndex = $(this).attr("data-name");
+			player = characters[playerIndex];
 			$(this).appendTo($("#player-character"));
 			$(this).removeClass("character-init").attr("id", "player");
 			$("#characters-initial").children(".character-init").each(function () {
