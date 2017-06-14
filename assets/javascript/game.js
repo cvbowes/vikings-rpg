@@ -1,3 +1,5 @@
+//TODO: balance characters
+
 $(document).ready(function() {
 	var selections = 0; //to check for win condition
 	var attacks = 0;	//to determine player AP
@@ -50,6 +52,9 @@ $(document).ready(function() {
 		defender.HP -= player.AP;
 		$("#defender .char-hp").text(defender.HP);
 		player.AP += baseAP;
+		if (defender.HP <= 20) {
+			$('#defender .char-hp').css('background-color', 'rgba(160,32,32,.5)');
+		}
 		checkForWin();
 
 	}
@@ -58,6 +63,10 @@ $(document).ready(function() {
 		$("#game-text").append("<p>" + defender.name + " attacked you for " + defender.counterAP + "</p>");
 		player.HP -= defender.counterAP;
 		$("#player .char-hp").text(player.HP);
+		if (player.HP <= 20) {
+			$('#player .char-hp').css('background-color', 'rgba(160,32,32,.5)');
+		}
+
 		checkForLose();
 	}
 
@@ -68,6 +77,7 @@ $(document).ready(function() {
 				$("#game-text").empty();
 				$("#game-text").html("<h3>You win!! Click 'Restart' to battle again.</h3>");
 				$("#restart").show();
+				$("#opponents").hide();	
 				return true;
 
 			}	else {
@@ -105,7 +115,9 @@ $(document).ready(function() {
 	 			// "this" is the current element in the loop
 	 			$(this).appendTo($("#opponents"));
     			$(this).removeClass("character-init").addClass("opponent")
-    		$("#characters-initial").hide();	
+    		$("#characters-initial").hide();
+    		$("#fight-row").show();
+    		$("#opponents").show();	
 
     		console.log("You have selected " + player.name);
 			});
@@ -140,6 +152,7 @@ $(document).ready(function() {
 			defenderAttack();
 		}
 
+
 	});
 
 	$("#restart").on("click", function(event) {
@@ -149,6 +162,8 @@ $(document).ready(function() {
 		$("#opponents .opponent").empty();
 		$("#game-text").empty();
 		$("#characters-initial").show();
+		$("#fight-row").hide();
+    	$("#opponents").hide();
 
 		selections = 0;
 		attacks = 0;

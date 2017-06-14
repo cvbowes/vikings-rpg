@@ -1,11 +1,29 @@
-/*div {
-	border: 1px solid black;
-}
-*/
+/*TODO: style text and images*/
 
-/*TODO: fix player/defender text so that it stays below image*/
+/*div {
+	box-sizing: border-box;
+	border: 1px solid black;
+}*/
+body {
+	background: url("../images/bg.jpg") center center fixed;
+	color: #fff;
+}
+
+h1, h3 {
+	text-shadow: 1px 1px 20px black, 0 0 2em #dcffff, 0 0 0.2em black;
+}
 
 h3 {
+	text-align: center;
+}
+
+img {
+	border: 5px solid rgba(220, 255, 255, 0.2);
+
+}
+
+.head {
+	padding: 10px 0;
 	text-align: center;
 }
 
@@ -18,25 +36,20 @@ h3 {
 
 .char-img {
 	width: 150px;
+	margin: 10px;
 	text-align: center;
 
 }
 
 .char-name {
-	margin: auto;
+	display: block;
 }
 
-#player-character .char-img {
+#player-character .char-img, #defender-div .char-img {
 	width: 200px;
-	float: right;
 }
 
-#defender-div .char-img {
-	width:200px;
-	float: left;
-}
-
-#characters-initial, #opponents,  #game-text, #attack, #player-character, #defender-div {
+#characters-initial, #opponents,  #game-text, #attack, #restart, #player-character, #defender-div {
 	display: block;
 	text-align: center;
 	margin: 0 auto;
@@ -48,8 +61,16 @@ h3 {
 	margin: 10px;
 }
 
+#fight-row, #opponents {
+	display: none;
+}
+
+#fight-row {
+	background: rgba(50, 50, 50, 0.5);
+	padding-top: 10px;
+}
+
 #game-text {
-	display
 	height: 100%;
 	padding: 10% 0;
 }
@@ -69,19 +90,17 @@ h3 {
 	}
 
 	#player-character, #defender-div {
+		padding: 0px 20px;
 		float: none;
 		margin: auto;
 	}
 
-	
-	#player-character .char-img {
-	width: 150px;
-	float: none;
+	#player-container, #defender-container {
+		padding: 20px;
 	}
 
-	#defender-div .char-img {
-	width: 150px;
-	float: none;
+	#player-character .char-img , #defender-div .char-img{
+		width: 150px;
 	}
 
 	#game-text {

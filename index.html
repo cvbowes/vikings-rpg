@@ -13,23 +13,26 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
 	
 </head>
 
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-4 col-md-4 col-sm-12 head">
+			<div class="col-lg-3 col-md-3 col-sm-12 head">
 				<h1>Battle With Vikings!</h1>
 			</div>
-			<div class="col-lg-8 col-md-8 col-sm-12">
+			<div class="col-lg-9 col-md-9 col-sm-12">
 				<div id="characters-initial"><h3>Choose Your Character</h3></div><br/>
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row" id="fight-row">
 			<div class="col-lg-2 col-md-2 col-sm-2 "></div>
-			<div class="col-lg-3 col-md-3 col-sm-3">
+			<div class="col-lg-3 col-md-3 col-sm-3" id="player-container">
 				<div id="player-character">Your Character </div><br/>
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-2">
@@ -38,7 +41,7 @@
 					<button class="btn btn-default" id="attack" disabled>Attack</button>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3 col-sm-3">
+			<div class="col-lg-3 col-md-3 col-sm-3" id="defender-container">
 				<div id="defender-div">Defender</div>
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-2"></div>
