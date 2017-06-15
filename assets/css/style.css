@@ -4,6 +4,11 @@
 	box-sizing: border-box;
 	border: 1px solid black;
 }*/
+/*
+font-family: 'Marcellus SC', serif;
+font-family: 'Cinzel Decorative', cursive;
+*/
+
 body {
 	background: url("../images/bg.jpg") center center fixed;
 	color: #fff;
@@ -11,10 +16,12 @@ body {
 
 h1, h3 {
 	text-shadow: 1px 1px 20px black, 0 0 2em #dcffff, 0 0 0.2em black;
+	
 }
 
 h3 {
 	text-align: center;
+	font-family: 'Marcellus SC', serif;
 }
 
 img {
@@ -25,6 +32,8 @@ img {
 .head {
 	padding: 10px 0;
 	text-align: center;
+	font-family: 'Cinzel Decorative', serif;
+	font-weight: 700;
 }
 
 .character-init {
@@ -32,17 +41,31 @@ img {
 	display: inline-block;
 	margin: 20px;
 	text-align: center;
+
 }
 
 .char-img {
 	width: 150px;
-	margin: 10px;
+	margin: 10px 10px 0px 10px;
 	text-align: center;
 
 }
 
 .char-name {
 	display: block;
+	font-size: 18px;
+	text-shadow: 1px 1px 20px black, 0 0 2em #dcffff, 0 0 0.2em black;
+	padding-bottom: 5px;
+	font-family: 'Marcellus SC', serif;
+}
+
+.char-hp {
+	font-family: 'Roboto Mono', monospace;
+}
+
+#player-character, #defender-div {
+	padding-top: 10px;
+	font-family: 'Cinzel Decorative', cursive;
 }
 
 #player-character .char-img, #defender-div .char-img {
@@ -72,11 +95,18 @@ img {
 
 #game-text {
 	height: 100%;
-	padding: 10% 0;
+	padding: 20% 0;
+	font-family: 'Roboto Mono', serif;
 }
 
 #attack {
 	margin-bottom: 20px;
+
+}
+
+.btn-danger{
+	border-radius: 0;
+	font-family: 'Marcellus SC',sans-serif;
 }
 
 

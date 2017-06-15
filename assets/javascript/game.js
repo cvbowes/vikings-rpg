@@ -16,14 +16,14 @@ $(document).ready(function() {
 	}
 
 	function gameSetup() {
-		ragnar = new character("Ragnar", "assets/images/ragnar.jpg", 180, baseAP, 20);
-		lagertha = new character("Lagertha", "assets/images/lagertha.jpg", 150, baseAP, 15);
-		athelstan = new character("Athelstan", "assets/images/athelstan.jpg", 120, baseAP, 5);
-		floki = new character("Floki", "assets/images/floki.jpg", 150, baseAP, 20);
-		rollo = new character("Rollo", "assets/images/rollo.jpg", 200, baseAP, 25);
-		bjorn = new character("Bjorn", "assets/images/bjorn.jpg", 130, baseAP, 10);
-		jarlBorg = new character("Jarl Borg", "assets/images/jarlborg.jpg", 180, baseAP, 18);
-		ecbert = new character("King Ecbert", "assets/images/ecbert.jpg", 150, baseAP, 10);
+		ragnar = new character("Ragnar", "assets/images/ragnar.jpg", 210, baseAP, 18);
+		lagertha = new character("Lagertha", "assets/images/lagertha.jpg", 180, baseAP, 15);
+		athelstan = new character("Athelstan", "assets/images/athelstan.jpg", 170, baseAP, 5);
+		floki = new character("Floki", "assets/images/floki.jpg", 200, baseAP, 17);
+		rollo = new character("Rollo", "assets/images/rollo.jpg", 230, baseAP, 18);
+		bjorn = new character("Bjorn", "assets/images/bjorn.jpg", 180, baseAP, 10);
+		jarlBorg = new character("Jarl Borg", "assets/images/jarlborg.jpg", 190, baseAP, 14);
+		ecbert = new character("King Ecbert", "assets/images/ecbert.jpg", 180, baseAP, 10);
 
 		characters = [ragnar, lagertha, athelstan, floki, rollo, bjorn, jarlBorg, ecbert];
 
